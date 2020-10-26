@@ -7,7 +7,7 @@ public class ItemDetailsPage extends BaseClass {
 
     public String getTitle(){
         String title = "";
-        driver.findElement(By.xpath("//h1[contains(@)class,'pdp-e-i-head']")).getText();
+        driver.findElement(By.xpath("//*[@id=\"productOverview\"]/div[2]/div/div[1]/div[1]/div[1]/h1")).getText();
     return title;
     }
 

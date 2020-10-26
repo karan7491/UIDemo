@@ -67,12 +67,16 @@ public class FileReaderAndWriter extends BaseClass {
 
     public void writeProductDetails(HashMap<String,String> parameters)  throws IOException {
         BufferedWriter bufferedWriter = null;
+        String value = "";
+        String key = "";
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(pruductDetailsFile));
-            Set<String> keys =parameters.keySet();
+            Set keys =parameters.keySet();
             Iterator iterator = keys.iterator();
             while (iterator.hasNext()){
-                bufferedWriter.write(iterator.next()+" : "+parameters.get(iterator.next()));
+                key = (String) iterator.next();
+                value = parameters.get(key);
+                bufferedWriter.write(key+" : "+value);
                 bufferedWriter.newLine();
             }
         } catch (IOException e) {
