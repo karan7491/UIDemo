@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="SnapdealTestSuite">
+    <test name="Assignment1">
+        <classes>
+            <class name="com.snapdeal.testcases.FirstAssignment.TC_Assignment1_Highest_Price_iPhone_Details"></class>
+        </classes>
+    </test>
+   <!-- <test name="Assignment2">
+        <classes>
+            <class name="com.snapdeal.testcases.SecondAssignment.TC_Assignment2_Number_Multiplier"></class>
+        </classes>
+    </test>-->
+</suite>
