@@ -3,11 +3,14 @@ package com.snapdeal.core.utils;
 import com.snapdeal.core.BaseClass;
 import java.io.*;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 public class FileReaderAndWriter extends BaseClass {
 
     private File inputFile = new File(curDir+"\\TestData\\input.txt");
     private File outputFile = new File(curDir+"\\result.txt");
+    private File pruductDetailsFile = new File(curDir+"\\itemDetails.txt");
     private int numbersPerRow = 0;
     private int multiplier = 0;
     private int numberOfLine = 0;
@@ -58,6 +61,22 @@ public class FileReaderAndWriter extends BaseClass {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        bufferedWriter.close();
+    }
+
+    public void writeProductDetails(HashMap<String,String> parameters)  throws IOException {
+        BufferedWriter bufferedWriter = null;
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(pruductDetailsFile));
+            Set<String> keys =parameters.keySet();
+            Iterator iterator = keys.iterator();
+            while (iterator.hasNext()){
+                bufferedWriter.write(iterator.next()+" : "+parameters.get(iterator.next()));
+                bufferedWriter.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         bufferedWriter.close();
     }

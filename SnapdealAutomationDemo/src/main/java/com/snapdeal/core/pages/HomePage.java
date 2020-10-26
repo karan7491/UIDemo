@@ -2,7 +2,6 @@ package com.snapdeal.core.pages;
 
 import com.snapdeal.core.BaseClass;
 import org.openqa.selenium.By;
-
 import java.util.concurrent.TimeUnit;
 
 public class HomePage extends BaseClass {
@@ -23,4 +22,5 @@ public class HomePage extends BaseClass {
         driver.findElement(By.xpath("//button[contains(@class,'searchformButton col-xs-4 rippleGrey')]")).click();
         System.out.printf("\nEnter search button.");
     }
+
 }
