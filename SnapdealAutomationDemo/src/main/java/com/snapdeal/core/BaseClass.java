@@ -3,17 +3,19 @@ package com.snapdeal.core;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+
 import java.io.*;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
 
-    protected WebDriver driver = null;
+    public static WebDriver driver;
     public static String curDir = System.getProperty("user.dir");;
     public HashMap<String,String> prop = null;
 
@@ -26,7 +28,7 @@ public class BaseClass {
     }
 
     public HashMap<String,String> propertiesLoader() {
-        HashMap<String,String> propHmap = new HashMap<>();
+        HashMap<String,String> propHmap = new HashMap();
         Properties prop = new Properties();
         InputStream inputStream = null;
         try {
@@ -48,11 +50,11 @@ public class BaseClass {
         return propHmap;
     }
 
-    public void initDriver(){
+    public static void initDriver(){
         if(driver==null){
             System.setProperty("webdriver.chrome.driver",curDir+"\\Driver\\chromedriver.exe" );
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.setHeadless(true);
+//            chromeOptions.setHeadless(true);
             driver = new ChromeDriver(chromeOptions);
             System.out.printf("Browser initiated!!!!");
         }else {
@@ -61,14 +63,10 @@ public class BaseClass {
     }
 
     @BeforeSuite(alwaysRun = true)
-    public void suitSetup() {
+    public void suitSetup() throws InterruptedException {
         initDriver();
-        driver.get(prop.get("URL"));
-        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-        driver.manage().window().fullscreen();
+        WebDriverWait wt= new WebDriverWait(driver,40);
     }
-
-    @AfterSuite(alwaysRun = true)
     public void quitBrowser(){
         driver.quit();
     }
